@@ -37,11 +37,7 @@ app.get("/api/companies/new", (req, res) => {
 
 //  "/api/user/company"
 app.get("/api/user/company", (req, res) => {
-    const newObject = {
-        user: createUser(),
-        company: createCompany()
-    };
-    res.json(newObject);
+    res.json({ user: createUser(), company: createCompany() });
 });
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));
