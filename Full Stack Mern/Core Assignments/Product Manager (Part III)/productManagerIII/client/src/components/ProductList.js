@@ -16,11 +16,15 @@ const ProductList = (props) => {
             })
     }, [])
 
-    const deleteProduct = (id) => {
-        axios.delete(`http://localhost:8000/api/products/${id}`)
+    const deleteProduct = (productID) => {
+        axios.delete(`http://localhost:8000/api/products/${productID}`)
             .then((res) => {
                 console.log(res.data);
-                setProduct(product.filter((product) => {product._id !== id}));
+                console.log("product:", product);
+                const newProductList = product.filter((product, index) => product._id !== productID);
+                console.log("newProductList", newProductList);
+                setProduct(newProductList);
+                console.log(product);
             })
             .catch((err) => {console.log(err)});
     }
@@ -32,7 +36,7 @@ const ProductList = (props) => {
                 return (<div className='d-flex justify-content-center App my-4 gap-3' key={ index }>
                     <h5><Link to={`/products/${ product._id }`}> { product.title }</Link></h5>
                     <Link to={`/products/update/${ product._id }`}>Update</Link>
-                    <button onClick={ () => { deleteProduct(product._id) } } className='btn btn-danger' >Delete</button>
+                    <button onClick={ (e) => { deleteProduct(product._id) } } className='btn btn-danger'>Delete</button>
                 </div>)
                 })
             }

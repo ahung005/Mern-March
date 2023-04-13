@@ -22,11 +22,9 @@ const UpdateProduct = (props) => {
             .catch(err => console.log(err));
     }, [])
 
-    const updateProduct = (e) => {
+    const handleSumbit = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8000/api/products/${id}`, {
-            title, price, description
-        })
+        axios.put(`http://localhost:8000/api/products/${id}`, {title, price, description,})
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -34,26 +32,27 @@ const UpdateProduct = (props) => {
             })
             .catch(err => console.log(err));
     }
+    
     return (
         <div className="App">
             <h1>Update { initialTitle }</h1>
-            <form onSubmit={ updateProduct }>
+            <form onSubmit={ handleSumbit }>
             <div className='form-group row justify-content-center my-4'>
                     <label className="col-sm-1 col-form-label">Title: </label> 
                     <div className="col-sm-3">
-                        <input  type="text" value={ title } className="form-control" onChange={(e) => {setTitle(e.target.value)}} />
+                        <input type="text" name="title" value={ title } className="form-control" onChange={(e) => {setTitle(e.target.value)}} />
                     </div>
                 </div>
                 <div className='form-group row justify-content-center my-4'>
                     <label className="col-sm-1 col-form-label">Price: </label> 
                     <div className="col-sm-3">
-                        <input type="number" value={ price } className="form-control" onChange={(e) => {setPrice(e.target.value)}} />
+                        <input type="number" name="price" value={ price } className="form-control" onChange={(e) => {setPrice(e.target.value)}} />
                     </div>
                 </div>
                 <div className='form-group row justify-content-center my-4'>
                     <label className="col-sm-1 col-form-label">Description: </label> 
                     <div className="col-sm-3">
-                        <input type="text" value={ description } className="form-control" onChange={(e) => {setDescription(e.target.value)}} />
+                        <input type="text" name="description" value={ description } className="form-control" onChange={(e) => {setDescription(e.target.value)}} />
                     </div>
                 </div>
                 <input type="submit" className='btn btn-secondary' value="Update"/>
