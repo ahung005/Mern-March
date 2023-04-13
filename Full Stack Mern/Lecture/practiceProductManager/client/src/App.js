@@ -1,6 +1,4 @@
 import "./App.css";
-//We cannot display two components at the same path so we import a view component that contains the two components we wish to display together
-//import Main from "./view/Main";
 import Main from "./view/Main";
 import OneProduct from "./components/OneProduct";
 import UpdateProduct from "./components/UpdateProduct";
