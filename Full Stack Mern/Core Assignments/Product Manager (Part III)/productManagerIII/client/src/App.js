@@ -1,23 +1,23 @@
-import './App.css';
-import React, { useState } from 'react';
-import axios from 'axios';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Main from './views/Main';
-import SingleProduct from './components/SingleProduct';
-import UpdateProduct from './components/UpdateProduct';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Main from "./view/Main";
+import OneProduct from "./components/OneProduct";
+import UpdateProduct from "./components/UpdateProduct";
+
+
 
 function App() {
-    return(
-        <div>
-            <BrowserRouter>
+    return (
+        <BrowserRouter>
+            <div className="App">
                 <Routes>
-                    <Route element={ <Main /> } path="/" /> 
-                    <Route element={ <SingleProduct /> } path="/products/:id" />
-                    <Route element={ <UpdateProduct /> } path="/products/update/:id"/>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/product/:id" element={<OneProduct />}  />
+                    <Route path="/product/update/:id" element={<UpdateProduct />} />
                 </Routes>
-            </BrowserRouter>
-        </div>
-    ) 
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
